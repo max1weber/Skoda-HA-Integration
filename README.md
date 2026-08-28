@@ -1,5 +1,7 @@
 # Škoda Connect for Home Assistant
 
+[🇬🇧 English](README.md) | [🇳🇱 Nederlands](README.nl.md)
+
 A multi-language [Home Assistant](https://www.home-assistant.io/) custom integration for
 Škoda vehicles, built on the official public MySkoda API
 ([public.api.connect.skoda-auto.cz](https://public.api.connect.skoda-auto.cz/docs)) via the
@@ -46,31 +48,39 @@ Home Assistant automatically picks the translation matching your instance's lang
 falling back to English. Contributions for additional languages are welcome — add a new file
 under `custom_components/skoda_connect/translations/`.
 
+This documentation itself is available in [English](README.md) and
+[Nederlands](README.nl.md).
+
 ## Installation
 
 ### HACS (recommended)
 
 1. In HACS, go to **Integrations** → menu (⋮) → **Custom repositories**.
-2. Add this repository URL with category **Integration**.
-3. Install "Škoda Connect" and restart Home Assistant.
+2. Add this repository URL (`https://github.com/max1weber/Skoda-HA-Integration`) with
+   category **Integration**.
+3. Search for "Škoda Connect" in HACS, click **Download**, and install it.
+4. Restart Home Assistant.
 
 ### Manual
 
-1. Copy `custom_components/skoda_connect` into your Home Assistant `config/custom_components/`
-   directory.
-2. Restart Home Assistant.
+1. Download or clone this repository.
+2. Copy the `custom_components/skoda_connect` folder into your Home Assistant
+   `config/custom_components/` directory, so you end up with
+   `config/custom_components/skoda_connect/manifest.json`.
+3. Restart Home Assistant.
 
 ## Configuration
 
 1. Go to **Settings → Devices & Services → Add Integration** and search for "Škoda Connect".
 2. Enter the email address and password you use for the MySkoda app.
 3. Optionally enter your S-PIN — this is required for the lock entity to work.
-4. After setup, open the integration's **Configure** dialog to change the polling interval
+4. Home Assistant will validate the login and, on success, create one device per vehicle on
+   the account with all applicable entities.
+5. After setup, open the integration's **Configure** dialog to change the polling interval
    (1–1440 minutes, default 30) or enable read-only mode.
 
-Credentials are stored in your Home Assistant config entry storage, the same way as most other
-account-based integrations. If your session expires, Home Assistant will prompt you to
-reauthenticate.
+If your session expires, Home Assistant shows a "reauthenticate" notification — click it and
+re-enter your password to restore the connection without losing entity history.
 
 ## Notes on the API
 
