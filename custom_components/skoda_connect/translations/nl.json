@@ -1,0 +1,90 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Verbind je Škoda Connect-account",
+        "description": "Vul de inloggegevens in die je ook gebruikt in de MySkoda-app.",
+        "data": {
+          "email": "E-mailadres",
+          "password": "Wachtwoord",
+          "spin": "S-PIN (optioneel, nodig om te vergrendelen/ontgrendelen)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Opnieuw aanmelden bij Škoda Connect",
+        "description": "Je Škoda Connect-sessie voor {email} is verlopen. Voer je wachtwoord opnieuw in.",
+        "data": {
+          "password": "Wachtwoord"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Ongeldig e-mailadres of wachtwoord.",
+      "cannot_connect": "Kan geen verbinding maken met Škoda Connect. Probeer het later opnieuw.",
+      "no_vehicles": "Er zijn geen voertuigen gevonden op dit account."
+    },
+    "abort": {
+      "already_configured": "Dit account is al geconfigureerd.",
+      "reauth_successful": "Opnieuw aanmelden is gelukt."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Škoda Connect-opties",
+        "data": {
+          "scan_interval": "Vernieuwingsinterval (minuten)",
+          "read_only": "Alleen-lezen modus (alle bedieningsfuncties uitschakelen)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_level": { "name": "Batterijniveau" },
+      "charge_power": { "name": "Laadvermogen" },
+      "charging_rate": { "name": "Laadsnelheid" },
+      "remaining_charging_time": { "name": "Resterende laadtijd" },
+      "battery_range": { "name": "Actieradius batterij" },
+      "total_range": { "name": "Totale actieradius" },
+      "fuel_level": { "name": "Brandstofniveau" },
+      "ad_blue_range": { "name": "AdBlue-bereik" },
+      "mileage": { "name": "Kilometerstand" },
+      "outside_temperature": { "name": "Buitentemperatuur" },
+      "target_temperature": { "name": "Doeltemperatuur" },
+      "software_version": { "name": "Softwareversie" }
+    },
+    "binary_sensor": {
+      "doors_open": { "name": "Portieren" },
+      "windows_open": { "name": "Ramen" },
+      "trunk_open": { "name": "Kofferbak" },
+      "bonnet_open": { "name": "Motorkap" },
+      "lights_on": { "name": "Verlichting" },
+      "charging": { "name": "Aan het laden" },
+      "plugged_in": { "name": "Laadkabel" }
+    },
+    "lock": {
+      "vehicle_lock": { "name": "Voertuig" }
+    },
+    "device_tracker": {
+      "vehicle_location": { "name": "Locatie" }
+    },
+    "climate": {
+      "air_conditioning": { "name": "Airconditioning" }
+    },
+    "switch": {
+      "window_heating": { "name": "Ruitverwarming" },
+      "charging": { "name": "Laden" },
+      "battery_care_mode": { "name": "Batterijbeschermingsmodus" },
+      "reduced_charging_current": { "name": "Verminderde laadstroom" }
+    },
+    "button": {
+      "honk_and_flash": { "name": "Claxon en knipperlichten" },
+      "flash": { "name": "Lichten knipperen" },
+      "wakeup": { "name": "Voertuig wekken" }
+    },
+    "number": {
+      "charge_limit": { "name": "Laadlimiet" }
+    }
+  }
+}

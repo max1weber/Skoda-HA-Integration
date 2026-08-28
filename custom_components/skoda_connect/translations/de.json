@@ -1,0 +1,90 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Škoda Connect-Konto verbinden",
+        "description": "Gib die Zugangsdaten ein, die du auch in der MySkoda-App verwendest.",
+        "data": {
+          "email": "E-Mail-Adresse",
+          "password": "Passwort",
+          "spin": "S-PIN (optional, erforderlich zum Ver-/Entriegeln)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Bei Škoda Connect erneut anmelden",
+        "description": "Deine Škoda Connect-Sitzung für {email} ist abgelaufen. Bitte gib dein Passwort erneut ein.",
+        "data": {
+          "password": "Passwort"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Ungültige E-Mail-Adresse oder ungültiges Passwort.",
+      "cannot_connect": "Verbindung zu Škoda Connect nicht möglich. Bitte später erneut versuchen.",
+      "no_vehicles": "Für dieses Konto wurden keine Fahrzeuge gefunden."
+    },
+    "abort": {
+      "already_configured": "Dieses Konto ist bereits konfiguriert.",
+      "reauth_successful": "Die erneute Anmeldung war erfolgreich."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Škoda Connect-Optionen",
+        "data": {
+          "scan_interval": "Abfrageintervall (Minuten)",
+          "read_only": "Nur-Lese-Modus (alle Fernsteuerungen deaktivieren)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_level": { "name": "Batteriestand" },
+      "charge_power": { "name": "Ladeleistung" },
+      "charging_rate": { "name": "Laderate" },
+      "remaining_charging_time": { "name": "Verbleibende Ladezeit" },
+      "battery_range": { "name": "Reichweite Batterie" },
+      "total_range": { "name": "Gesamtreichweite" },
+      "fuel_level": { "name": "Kraftstoffstand" },
+      "ad_blue_range": { "name": "AdBlue-Reichweite" },
+      "mileage": { "name": "Kilometerstand" },
+      "outside_temperature": { "name": "Außentemperatur" },
+      "target_temperature": { "name": "Zieltemperatur" },
+      "software_version": { "name": "Softwareversion" }
+    },
+    "binary_sensor": {
+      "doors_open": { "name": "Türen" },
+      "windows_open": { "name": "Fenster" },
+      "trunk_open": { "name": "Kofferraum" },
+      "bonnet_open": { "name": "Motorhaube" },
+      "lights_on": { "name": "Beleuchtung" },
+      "charging": { "name": "Lädt" },
+      "plugged_in": { "name": "Ladekabel" }
+    },
+    "lock": {
+      "vehicle_lock": { "name": "Fahrzeug" }
+    },
+    "device_tracker": {
+      "vehicle_location": { "name": "Standort" }
+    },
+    "climate": {
+      "air_conditioning": { "name": "Klimaanlage" }
+    },
+    "switch": {
+      "window_heating": { "name": "Scheibenheizung" },
+      "charging": { "name": "Laden" },
+      "battery_care_mode": { "name": "Batterieschonmodus" },
+      "reduced_charging_current": { "name": "Reduzierter Ladestrom" }
+    },
+    "button": {
+      "honk_and_flash": { "name": "Hupen und Blinken" },
+      "flash": { "name": "Lichthupe" },
+      "wakeup": { "name": "Fahrzeug aufwecken" }
+    },
+    "number": {
+      "charge_limit": { "name": "Ladegrenze" }
+    }
+  }
+}
