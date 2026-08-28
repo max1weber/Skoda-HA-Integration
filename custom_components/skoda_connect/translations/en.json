@@ -1,0 +1,90 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect your Škoda Connect account",
+        "description": "Enter the credentials you use to sign in to the MySkoda app.",
+        "data": {
+          "email": "Email address",
+          "password": "Password",
+          "spin": "S-PIN (optional, required to lock/unlock)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reauthenticate Škoda Connect",
+        "description": "Your Škoda Connect session for {email} has expired. Please enter your password again.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid email or password.",
+      "cannot_connect": "Could not connect to Škoda Connect. Please try again later.",
+      "no_vehicles": "No vehicles were found on this account."
+    },
+    "abort": {
+      "already_configured": "This account is already configured.",
+      "reauth_successful": "Reauthentication was successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Škoda Connect options",
+        "data": {
+          "scan_interval": "Polling interval (minutes)",
+          "read_only": "Read-only mode (disable all remote controls)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_level": { "name": "Battery level" },
+      "charge_power": { "name": "Charging power" },
+      "charging_rate": { "name": "Charging rate" },
+      "remaining_charging_time": { "name": "Remaining charging time" },
+      "battery_range": { "name": "Battery range" },
+      "total_range": { "name": "Total range" },
+      "fuel_level": { "name": "Fuel level" },
+      "ad_blue_range": { "name": "AdBlue range" },
+      "mileage": { "name": "Mileage" },
+      "outside_temperature": { "name": "Outside temperature" },
+      "target_temperature": { "name": "Target temperature" },
+      "software_version": { "name": "Software version" }
+    },
+    "binary_sensor": {
+      "doors_open": { "name": "Doors" },
+      "windows_open": { "name": "Windows" },
+      "trunk_open": { "name": "Trunk" },
+      "bonnet_open": { "name": "Bonnet" },
+      "lights_on": { "name": "Lights" },
+      "charging": { "name": "Charging" },
+      "plugged_in": { "name": "Charging cable" }
+    },
+    "lock": {
+      "vehicle_lock": { "name": "Vehicle" }
+    },
+    "device_tracker": {
+      "vehicle_location": { "name": "Location" }
+    },
+    "climate": {
+      "air_conditioning": { "name": "Air conditioning" }
+    },
+    "switch": {
+      "window_heating": { "name": "Window heating" },
+      "charging": { "name": "Charging" },
+      "battery_care_mode": { "name": "Battery care mode" },
+      "reduced_charging_current": { "name": "Reduced charging current" }
+    },
+    "button": {
+      "honk_and_flash": { "name": "Honk and flash" },
+      "flash": { "name": "Flash lights" },
+      "wakeup": { "name": "Wake up vehicle" }
+    },
+    "number": {
+      "charge_limit": { "name": "Charge limit" }
+    }
+  }
+}

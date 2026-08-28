@@ -1,0 +1,90 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Připojit účet Škoda Connect",
+        "description": "Zadejte přihlašovací údaje, které používáte v aplikaci MySkoda.",
+        "data": {
+          "email": "E-mailová adresa",
+          "password": "Heslo",
+          "spin": "S-PIN (volitelné, potřebné pro zamykání/odemykání)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Nové přihlášení ke Škoda Connect",
+        "description": "Platnost relace Škoda Connect pro {email} vypršela. Zadejte prosím heslo znovu.",
+        "data": {
+          "password": "Heslo"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Neplatný e-mail nebo heslo.",
+      "cannot_connect": "Nepodařilo se připojit ke Škoda Connect. Zkuste to prosím později.",
+      "no_vehicles": "U tohoto účtu nebyla nalezena žádná vozidla."
+    },
+    "abort": {
+      "already_configured": "Tento účet je již nakonfigurován.",
+      "reauth_successful": "Opětovné přihlášení proběhlo úspěšně."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Možnosti Škoda Connect",
+        "data": {
+          "scan_interval": "Interval aktualizace (minuty)",
+          "read_only": "Režim pouze pro čtení (vypne veškeré dálkové ovládání)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_level": { "name": "Stav baterie" },
+      "charge_power": { "name": "Nabíjecí výkon" },
+      "charging_rate": { "name": "Rychlost nabíjení" },
+      "remaining_charging_time": { "name": "Zbývající doba nabíjení" },
+      "battery_range": { "name": "Dojezd na baterii" },
+      "total_range": { "name": "Celkový dojezd" },
+      "fuel_level": { "name": "Stav paliva" },
+      "ad_blue_range": { "name": "Dojezd AdBlue" },
+      "mileage": { "name": "Stav tachometru" },
+      "outside_temperature": { "name": "Venkovní teplota" },
+      "target_temperature": { "name": "Cílová teplota" },
+      "software_version": { "name": "Verze softwaru" }
+    },
+    "binary_sensor": {
+      "doors_open": { "name": "Dveře" },
+      "windows_open": { "name": "Okna" },
+      "trunk_open": { "name": "Kufr" },
+      "bonnet_open": { "name": "Kapota" },
+      "lights_on": { "name": "Světla" },
+      "charging": { "name": "Nabíjí se" },
+      "plugged_in": { "name": "Nabíjecí kabel" }
+    },
+    "lock": {
+      "vehicle_lock": { "name": "Vozidlo" }
+    },
+    "device_tracker": {
+      "vehicle_location": { "name": "Poloha" }
+    },
+    "climate": {
+      "air_conditioning": { "name": "Klimatizace" }
+    },
+    "switch": {
+      "window_heating": { "name": "Vyhřívání skel" },
+      "charging": { "name": "Nabíjení" },
+      "battery_care_mode": { "name": "Šetrný režim baterie" },
+      "reduced_charging_current": { "name": "Snížený nabíjecí proud" }
+    },
+    "button": {
+      "honk_and_flash": { "name": "Klakson a blikání" },
+      "flash": { "name": "Blikání světel" },
+      "wakeup": { "name": "Probudit vozidlo" }
+    },
+    "number": {
+      "charge_limit": { "name": "Limit nabití" }
+    }
+  }
+}
