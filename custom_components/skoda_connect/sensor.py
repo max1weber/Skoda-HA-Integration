@@ -104,8 +104,24 @@ def _location_address(vehicle: Vehicle) -> StateType:
         return None
 
 
+def _at_saved_charging_location(vehicle: Vehicle) -> bool:
+    """Return whether the vehicle is currently at one of its saved charging locations."""
+    return bool(
+        vehicle.charging is not None
+        and vehicle.charging.is_vehicle_in_saved_location
+        and vehicle.charging_profiles is not None
+        and vehicle.charging_profiles.current_vehicle_position_profile is not None
+    )
+
+
 def _charging_location_profile(vehicle: Vehicle) -> StateType:
-    """Return the name of the charging profile bound to the vehicle's current location."""
+    """Return the name of the saved charging location the vehicle is currently at.
+
+    Only meaningful while the vehicle is actually at a saved location -
+    ``current_vehicle_position_profile`` can otherwise still carry a stale name.
+    """
+    if not _at_saved_charging_location(vehicle):
+        return None
     return vehicle.charging_profiles.current_vehicle_position_profile.name
 
 
@@ -230,8 +246,7 @@ SENSOR_DESCRIPTIONS: tuple[SkodaSensorEntityDescription, ...] = (
         translation_key="charging_location_profile",
         icon="mdi:map-marker-radius",
         value_fn=_charging_location_profile,
-        exists_fn=lambda v: v.charging_profiles is not None
-        and v.charging_profiles.current_vehicle_position_profile is not None,
+        exists_fn=lambda v: v.charging_profiles is not None,
     ),
 )
 
