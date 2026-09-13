@@ -63,7 +63,8 @@
       "bonnet_open": { "name": "Motorhaube" },
       "lights_on": { "name": "Beleuchtung" },
       "charging": { "name": "Lädt" },
-      "plugged_in": { "name": "Ladekabel" }
+      "plugged_in": { "name": "Ladekabel" },
+      "vehicle_in_saved_location": { "name": "An gespeichertem Ladestandort" }
     },
     "lock": {
       "vehicle_lock": { "name": "Fahrzeug" }

@@ -63,7 +63,8 @@
       "bonnet_open": { "name": "Bonnet" },
       "lights_on": { "name": "Lights" },
       "charging": { "name": "Charging" },
-      "plugged_in": { "name": "Charging cable" }
+      "plugged_in": { "name": "Charging cable" },
+      "vehicle_in_saved_location": { "name": "At saved charging location" }
     },
     "lock": {
       "vehicle_lock": { "name": "Vehicle" }

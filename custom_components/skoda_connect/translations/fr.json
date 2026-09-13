@@ -63,7 +63,8 @@
       "bonnet_open": { "name": "Capot" },
       "lights_on": { "name": "Éclairage" },
       "charging": { "name": "En charge" },
-      "plugged_in": { "name": "Câble de charge" }
+      "plugged_in": { "name": "Câble de charge" },
+      "vehicle_in_saved_location": { "name": "Sur un lieu de charge enregistré" }
     },
     "lock": {
       "vehicle_lock": { "name": "Véhicule" }

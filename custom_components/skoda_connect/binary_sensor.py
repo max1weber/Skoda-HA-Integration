@@ -81,6 +81,13 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[SkodaBinarySensorEntityDescription, ...] = (
         exists_fn=lambda v: v.air_conditioning is not None
         and v.air_conditioning.charger_connection_state is not None,
     ),
+    SkodaBinarySensorEntityDescription(
+        key="vehicle_in_saved_location",
+        translation_key="vehicle_in_saved_location",
+        icon="mdi:home-map-marker",
+        value_fn=lambda v: v.charging.is_vehicle_in_saved_location,
+        exists_fn=lambda v: v.charging is not None,
+    ),
 )
 
 

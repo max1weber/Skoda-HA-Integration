@@ -63,7 +63,8 @@
       "bonnet_open": { "name": "Motorkap" },
       "lights_on": { "name": "Verlichting" },
       "charging": { "name": "Aan het laden" },
-      "plugged_in": { "name": "Laadkabel" }
+      "plugged_in": { "name": "Laadkabel" },
+      "vehicle_in_saved_location": { "name": "Bij opgeslagen laadlocatie" }
     },
     "lock": {
       "vehicle_lock": { "name": "Voertuig" }

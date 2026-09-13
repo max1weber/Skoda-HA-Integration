@@ -63,7 +63,8 @@
       "bonnet_open": { "name": "Kapota" },
       "lights_on": { "name": "Světla" },
       "charging": { "name": "Nabíjí se" },
-      "plugged_in": { "name": "Nabíjecí kabel" }
+      "plugged_in": { "name": "Nabíjecí kabel" },
+      "vehicle_in_saved_location": { "name": "Na uložené nabíjecí lokaci" }
     },
     "lock": {
       "vehicle_lock": { "name": "Vozidlo" }

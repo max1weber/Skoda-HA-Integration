@@ -21,7 +21,7 @@ opnieuw-aanmelden, en een diagnostics-download.
 | Platform | Entiteiten |
 |---|---|
 | `sensor` | Batterijniveau, laadvermogen, laadsnelheid, resterende laadtijd, actieradius (batterij/totaal), brandstofniveau, AdBlue-bereik, kilometerstand, buiten-/doeltemperatuur, softwareversie, adres van de laatst bekende locatie |
-| `binary_sensor` | Portieren, ramen, kofferbak, motorkap, verlichting, aan het laden, laadkabel aangesloten |
+| `binary_sensor` | Portieren, ramen, kofferbak, motorkap, verlichting, aan het laden, laadkabel aangesloten, voertuig bij opgeslagen laadlocatie |
 | `lock` | Centrale vergrendeling (vereist S-PIN) |
 | `device_tracker` | Laatst bekende GPS-locatie van het voertuig (zichtbaar op de Kaart-dashboardkaart) |
 | `climate` | Airconditioning op afstand (aan/uit, ventilatie, doeltemperatuur) |
