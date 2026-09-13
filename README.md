@@ -18,10 +18,10 @@ an options flow, reauthentication support, and a diagnostics download.
 
 | Platform | Entities |
 |---|---|
-| `sensor` | Battery level, charging power, charging rate, remaining charging time, battery/total range, fuel level, AdBlue range, mileage, outside/target temperature, software version |
+| `sensor` | Battery level, charging power, charging rate, remaining charging time, battery/total range, fuel level, AdBlue range, mileage, outside/target temperature, software version, address of the vehicle's last known location |
 | `binary_sensor` | Doors, windows, trunk, bonnet, lights, charging, charging cable plugged in |
 | `lock` | Central locking (requires S-PIN) |
-| `device_tracker` | Last known vehicle GPS position |
+| `device_tracker` | Last known vehicle GPS position (shows on the Map dashboard) |
 | `climate` | Remote air conditioning (on/off, ventilation, target temperature) |
 | `switch` | Window heating, charging, battery care mode, reduced charging current |
 | `button` | Honk & flash, flash lights, wake up vehicle |

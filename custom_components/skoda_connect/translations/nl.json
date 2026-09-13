@@ -53,7 +53,8 @@
       "mileage": { "name": "Kilometerstand" },
       "outside_temperature": { "name": "Buitentemperatuur" },
       "target_temperature": { "name": "Doeltemperatuur" },
-      "software_version": { "name": "Softwareversie" }
+      "software_version": { "name": "Softwareversie" },
+      "location_address": { "name": "Adres" }
     },
     "binary_sensor": {
       "doors_open": { "name": "Portieren" },

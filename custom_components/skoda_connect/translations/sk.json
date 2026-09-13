@@ -53,7 +53,8 @@
       "mileage": { "name": "Stav tachometra" },
       "outside_temperature": { "name": "Vonkajšia teplota" },
       "target_temperature": { "name": "Cieľová teplota" },
-      "software_version": { "name": "Verzia softvéru" }
+      "software_version": { "name": "Verzia softvéru" },
+      "location_address": { "name": "Adresa" }
     },
     "binary_sensor": {
       "doors_open": { "name": "Dvere" },

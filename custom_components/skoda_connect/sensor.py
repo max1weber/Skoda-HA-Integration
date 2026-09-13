@@ -24,6 +24,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
 from myskoda import Vehicle
+from myskoda.models.position import PositionType
 
 from .coordinator import SkodaConfigEntry, SkodaDataUpdateCoordinator
 from .entity import SkodaVehicleEntity
@@ -84,6 +85,23 @@ def _target_temperature(vehicle: Vehicle) -> StateType:
 
 def _software_version(vehicle: Vehicle) -> StateType:
     return vehicle.info.software_version
+
+
+def _location_address(vehicle: Vehicle) -> StateType:
+    """Return a human-readable address for the vehicle's last known location."""
+    try:
+        for position in vehicle.positions.positions:
+            if position.type == PositionType.VEHICLE and position.address:
+                addr = position.address
+                line1 = " ".join(p for p in (addr.street, addr.house_number) if p)
+                line2 = " ".join(p for p in (addr.zip_code, addr.city) if p)
+                return ", ".join(p for p in (line1, line2, addr.country) if p) or None
+    except (AttributeError, TypeError):
+        pass
+    try:
+        return vehicle.parking_position.parking_position.formatted_address
+    except AttributeError:
+        return None
 
 
 SENSOR_DESCRIPTIONS: tuple[SkodaSensorEntityDescription, ...] = (
@@ -194,6 +212,13 @@ SENSOR_DESCRIPTIONS: tuple[SkodaSensorEntityDescription, ...] = (
         entity_registry_enabled_default=False,
         value_fn=_software_version,
         exists_fn=lambda v: v.info.software_version is not None,
+    ),
+    SkodaSensorEntityDescription(
+        key="location_address",
+        translation_key="location_address",
+        icon="mdi:map-marker",
+        value_fn=_location_address,
+        exists_fn=lambda v: _location_address(v) is not None,
     ),
 )
 
