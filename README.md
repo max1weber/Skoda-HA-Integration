@@ -77,7 +77,7 @@ This documentation itself is available in [English](README.md) and
 4. Home Assistant will validate the login and, on success, create one device per vehicle on
    the account with all applicable entities.
 5. After setup, open the integration's **Configure** dialog to change the polling interval
-   (15–1440 minutes, default 60) or enable read-only mode.
+   (15–1440 minutes, default 15) or enable read-only mode.
 
 If your session expires, Home Assistant shows a "reauthenticate" notification — click it and
 re-enter your password to restore the connection without losing entity history.
@@ -102,15 +102,14 @@ API requests (one per supported capability, plus vehicle info and maintenance da
 
 To stay well within the quota, this integration:
 
-- Defaults to a 60-minute polling interval, with a 15-minute minimum enforced in the options
-  flow — you cannot accidentally configure a dangerously short interval.
+- Defaults to a 15-minute polling interval, which is also the enforced minimum in the options
+  flow — you cannot accidentally configure a shorter, even riskier interval. If you have
+  multiple vehicles on one account, consider raising this.
 - Explicitly detects HTTP 429/430 responses and pauses polling, honoring the API's `Retry-After`
   header when present (falling back to a 15-minute pause, capped at 1 hour, if it's absent or
   unparsable), instead of hammering the API again on the very next tick.
 - Logs a clear warning when this happens, so you can see it in **Settings → System → Logs**
   rather than the integration silently retrying too soon.
-
-If you have several vehicles on one account, consider raising the polling interval further.
 
 ## Disclaimer
 

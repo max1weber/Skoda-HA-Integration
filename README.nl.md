@@ -82,7 +82,7 @@ Ook deze documentatie is beschikbaar in het [Engels](README.md) en het
 4. Home Assistant controleert de inloggegevens en maakt bij succes één apparaat aan per
    voertuig op het account, met alle van toepassing zijnde entiteiten.
 5. Open na het instellen het **Configureren**-dialoogvenster van de integratie om het
-   vernieuwingsinterval aan te passen (15–1440 minuten, standaard 60) of de alleen-lezen modus
+   vernieuwingsinterval aan te passen (15–1440 minuten, standaard 15) of de alleen-lezen modus
    in te schakelen.
 
 Als je sessie verloopt, toont Home Assistant een melding om "opnieuw aan te melden" — klik
@@ -110,17 +110,15 @@ onderhoudsgegevens).
 
 Om ruim binnen het quotum te blijven, doet deze integratie het volgende:
 
-- Standaard een vernieuwingsinterval van 60 minuten, met een afgedwongen minimum van 15 minuten
-  in de opties-flow — je kunt dus niet per ongeluk een gevaarlijk kort interval instellen.
+- Standaard een vernieuwingsinterval van 15 minuten, wat ook het afgedwongen minimum is in de
+  opties-flow — je kunt dus niet per ongeluk een nog korter, risicovoller interval instellen.
+  Heb je meerdere voertuigen op één account, overweeg dan om dit te verhogen.
 - HTTP 429/430-responses worden expliciet herkend, waarna het pollen wordt gepauzeerd. De
   `Retry-After`-header van de API wordt gerespecteerd indien aanwezig (met een terugval naar
   15 minuten, met een maximum van 1 uur, als deze ontbreekt of niet te lezen is), in plaats van
   meteen bij de volgende cyclus opnieuw te proberen.
 - Er wordt een duidelijke waarschuwing gelogd wanneer dit gebeurt, zichtbaar onder
   **Instellingen → Systeem → Logboeken**, zodat het niet stilletjes te snel opnieuw probeert.
-
-Heb je meerdere voertuigen op één account, overweeg dan om het vernieuwingsinterval verder te
-verhogen.
 
 ## Disclaimer
 
