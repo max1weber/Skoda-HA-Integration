@@ -122,7 +122,7 @@ Om ruim binnen het quotum te blijven, doet deze integratie het volgende:
 
 ## Changelog
 
-Zie [CHANGELOG.md](CHANGELOG.md) voor de release notes.
+Zie [CHANGELOG.nl.md](CHANGELOG.nl.md) voor de release notes.
 
 ## Disclaimer
 
