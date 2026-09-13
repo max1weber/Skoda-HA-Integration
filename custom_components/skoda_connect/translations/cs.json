@@ -21,7 +21,8 @@
     "error": {
       "invalid_auth": "Neplatný e-mail nebo heslo.",
       "cannot_connect": "Nepodařilo se připojit ke Škoda Connect. Zkuste to prosím později.",
-      "no_vehicles": "U tohoto účtu nebyla nalezena žádná vozidla."
+      "no_vehicles": "U tohoto účtu nebyla nalezena žádná vozidla.",
+      "rate_limited": "Byl dosažen limit počtu požadavků Škoda Connect API. Počkejte prosím chvíli a zkuste to znovu."
     },
     "abort": {
       "already_configured": "Tento účet je již nakonfigurován.",

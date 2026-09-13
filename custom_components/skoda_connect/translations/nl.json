@@ -21,7 +21,8 @@
     "error": {
       "invalid_auth": "Ongeldig e-mailadres of wachtwoord.",
       "cannot_connect": "Kan geen verbinding maken met Škoda Connect. Probeer het later opnieuw.",
-      "no_vehicles": "Er zijn geen voertuigen gevonden op dit account."
+      "no_vehicles": "Er zijn geen voertuigen gevonden op dit account.",
+      "rate_limited": "De rate limit van de Škoda Connect API is bereikt. Wacht even voordat je het opnieuw probeert."
     },
     "abort": {
       "already_configured": "Dit account is al geconfigureerd.",

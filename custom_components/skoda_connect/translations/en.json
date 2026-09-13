@@ -21,7 +21,8 @@
     "error": {
       "invalid_auth": "Invalid email or password.",
       "cannot_connect": "Could not connect to Škoda Connect. Please try again later.",
-      "no_vehicles": "No vehicles were found on this account."
+      "no_vehicles": "No vehicles were found on this account.",
+      "rate_limited": "Škoda Connect API rate limit reached. Please wait a while before trying again."
     },
     "abort": {
       "already_configured": "This account is already configured.",

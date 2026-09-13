@@ -6,6 +6,7 @@ import logging
 from typing import Any
 
 import voluptuous as vol
+from aiohttp import ClientResponseError
 from homeassistant.config_entries import (
     ConfigEntry,
     ConfigFlow,
@@ -31,6 +32,7 @@ from .const import (
     MAX_SCAN_INTERVAL_MINUTES,
     MIN_SCAN_INTERVAL_MINUTES,
 )
+from .coordinator import RATE_LIMIT_STATUS_CODES
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -53,6 +55,13 @@ async def _validate_login(hass, email: str, password: str) -> list[str]:
     finally:
         await myskoda.disconnect()
     return vins
+
+
+def _error_code_for(err: Exception) -> str:
+    """Map an exception raised during login validation to a translated error code."""
+    if isinstance(err, ClientResponseError) and err.status in RATE_LIMIT_STATUS_CODES:
+        return "rate_limited"
+    return "cannot_connect"
 
 
 class SkodaConnectConfigFlow(ConfigFlow, domain=DOMAIN):
@@ -81,9 +90,9 @@ class SkodaConnectConfigFlow(ConfigFlow, domain=DOMAIN):
                 )
             except AuthorizationFailedError:
                 errors["base"] = "invalid_auth"
-            except Exception:  # noqa: BLE001
+            except Exception as err:  # noqa: BLE001
                 _LOGGER.exception("Unexpected error validating Škoda Connect login")
-                errors["base"] = "cannot_connect"
+                errors["base"] = _error_code_for(err)
             else:
                 if not vins:
                     errors["base"] = "no_vehicles"
@@ -126,9 +135,9 @@ class SkodaConnectConfigFlow(ConfigFlow, domain=DOMAIN):
                 )
             except AuthorizationFailedError:
                 errors["base"] = "invalid_auth"
-            except Exception:  # noqa: BLE001
+            except Exception as err:  # noqa: BLE001
                 _LOGGER.exception("Unexpected error validating Škoda Connect login")
-                errors["base"] = "cannot_connect"
+                errors["base"] = _error_code_for(err)
             else:
                 return self.async_update_reload_and_abort(
                     self._reauth_entry,

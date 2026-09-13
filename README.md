@@ -77,7 +77,7 @@ This documentation itself is available in [English](README.md) and
 4. Home Assistant will validate the login and, on success, create one device per vehicle on
    the account with all applicable entities.
 5. After setup, open the integration's **Configure** dialog to change the polling interval
-   (1–1440 minutes, default 30) or enable read-only mode.
+   (15–1440 minutes, default 60) or enable read-only mode.
 
 If your session expires, Home Assistant shows a "reauthenticate" notification — click it and
 re-enter your password to restore the connection without losing entity history.
@@ -89,6 +89,28 @@ than re-implementing the Škoda OAuth2/REST/MQTT client from scratch, so it bene
 upstream fixes and coverage of the public API's evolving vehicle capabilities. Data is refreshed
 by polling only — MQTT push notifications from the API are not used, keeping the integration
 simple and avoiding an extra point of failure.
+
+### Rate limits
+
+The public MySkoda API enforces a per-account request quota and returns HTTP 429 (Too Many
+Requests) once it is exceeded — the `myskoda` client itself does not retry or back off on this.
+Community reports (see
+[skodaconnect/homeassistant-myskoda#1053](https://github.com/skodaconnect/homeassistant-myskoda/issues/1053))
+show that polling too aggressively can get an account temporarily rate limited, or in the worst
+case locked out, especially since fetching one vehicle's full state costs roughly 10–13 separate
+API requests (one per supported capability, plus vehicle info and maintenance data).
+
+To stay well within the quota, this integration:
+
+- Defaults to a 60-minute polling interval, with a 15-minute minimum enforced in the options
+  flow — you cannot accidentally configure a dangerously short interval.
+- Explicitly detects HTTP 429/430 responses and pauses polling, honoring the API's `Retry-After`
+  header when present (falling back to a 15-minute pause, capped at 1 hour, if it's absent or
+  unparsable), instead of hammering the API again on the very next tick.
+- Logs a clear warning when this happens, so you can see it in **Settings → System → Logs**
+  rather than the integration silently retrying too soon.
+
+If you have several vehicles on one account, consider raising the polling interval further.
 
 ## Disclaimer
 
