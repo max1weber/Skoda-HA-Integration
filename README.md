@@ -18,10 +18,10 @@ an options flow, reauthentication support, and a diagnostics download.
 
 | Platform | Entities |
 |---|---|
-| `sensor` | Battery level, charging power, charging rate, remaining charging time, battery/total range, fuel level, AdBlue range, mileage, outside/target temperature, software version |
-| `binary_sensor` | Doors, windows, trunk, bonnet, lights, charging, charging cable plugged in |
+| `sensor` | Battery level, charging power, charging rate, remaining charging time, battery/total range, fuel level, AdBlue range, mileage, outside/target temperature, software version, address of the vehicle's last known location, name of the charging location profile currently active |
+| `binary_sensor` | Doors, windows, trunk, bonnet, lights, charging, charging cable plugged in, vehicle at saved charging location |
 | `lock` | Central locking (requires S-PIN) |
-| `device_tracker` | Last known vehicle GPS position |
+| `device_tracker` | Last known vehicle GPS position (shows on the Map dashboard) |
 | `climate` | Remote air conditioning (on/off, ventilation, target temperature) |
 | `switch` | Window heating, charging, battery care mode, reduced charging current |
 | `button` | Honk & flash, flash lights, wake up vehicle |
@@ -77,7 +77,7 @@ This documentation itself is available in [English](README.md) and
 4. Home Assistant will validate the login and, on success, create one device per vehicle on
    the account with all applicable entities.
 5. After setup, open the integration's **Configure** dialog to change the polling interval
-   (1–1440 minutes, default 30) or enable read-only mode.
+   (15–1440 minutes, default 15) or enable read-only mode.
 
 If your session expires, Home Assistant shows a "reauthenticate" notification — click it and
 re-enter your password to restore the connection without losing entity history.
@@ -89,6 +89,31 @@ than re-implementing the Škoda OAuth2/REST/MQTT client from scratch, so it bene
 upstream fixes and coverage of the public API's evolving vehicle capabilities. Data is refreshed
 by polling only — MQTT push notifications from the API are not used, keeping the integration
 simple and avoiding an extra point of failure.
+
+### Rate limits
+
+The public MySkoda API enforces a per-account request quota and returns HTTP 429 (Too Many
+Requests) once it is exceeded — the `myskoda` client itself does not retry or back off on this.
+Community reports (see
+[skodaconnect/homeassistant-myskoda#1053](https://github.com/skodaconnect/homeassistant-myskoda/issues/1053))
+show that polling too aggressively can get an account temporarily rate limited, or in the worst
+case locked out, especially since fetching one vehicle's full state costs roughly 10–13 separate
+API requests (one per supported capability, plus vehicle info and maintenance data).
+
+To stay well within the quota, this integration:
+
+- Defaults to a 15-minute polling interval, which is also the enforced minimum in the options
+  flow — you cannot accidentally configure a shorter, even riskier interval. If you have
+  multiple vehicles on one account, consider raising this.
+- Explicitly detects HTTP 429/430 responses and pauses polling, honoring the API's `Retry-After`
+  header when present (falling back to a 15-minute pause, capped at 1 hour, if it's absent or
+  unparsable), instead of hammering the API again on the very next tick.
+- Logs a clear warning when this happens, so you can see it in **Settings → System → Logs**
+  rather than the integration silently retrying too soon.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ## Disclaimer
 

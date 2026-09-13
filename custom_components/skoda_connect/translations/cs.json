@@ -21,7 +21,8 @@
     "error": {
       "invalid_auth": "Neplatný e-mail nebo heslo.",
       "cannot_connect": "Nepodařilo se připojit ke Škoda Connect. Zkuste to prosím později.",
-      "no_vehicles": "U tohoto účtu nebyla nalezena žádná vozidla."
+      "no_vehicles": "U tohoto účtu nebyla nalezena žádná vozidla.",
+      "rate_limited": "Byl dosažen limit počtu požadavků Škoda Connect API. Počkejte prosím chvíli a zkuste to znovu."
     },
     "abort": {
       "already_configured": "Tento účet je již nakonfigurován.",
@@ -52,7 +53,9 @@
       "mileage": { "name": "Stav tachometru" },
       "outside_temperature": { "name": "Venkovní teplota" },
       "target_temperature": { "name": "Cílová teplota" },
-      "software_version": { "name": "Verze softwaru" }
+      "software_version": { "name": "Verze softwaru" },
+      "location_address": { "name": "Adresa" },
+      "charging_location_profile": { "name": "Místo nabíjení" }
     },
     "binary_sensor": {
       "doors_open": { "name": "Dveře" },
@@ -61,7 +64,8 @@
       "bonnet_open": { "name": "Kapota" },
       "lights_on": { "name": "Světla" },
       "charging": { "name": "Nabíjí se" },
-      "plugged_in": { "name": "Nabíjecí kabel" }
+      "plugged_in": { "name": "Nabíjecí kabel" },
+      "vehicle_in_saved_location": { "name": "Na uložené nabíjecí lokaci" }
     },
     "lock": {
       "vehicle_lock": { "name": "Vozidlo" }

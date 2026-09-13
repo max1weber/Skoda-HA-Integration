@@ -21,7 +21,8 @@
     "error": {
       "invalid_auth": "Invalid email or password.",
       "cannot_connect": "Could not connect to Škoda Connect. Please try again later.",
-      "no_vehicles": "No vehicles were found on this account."
+      "no_vehicles": "No vehicles were found on this account.",
+      "rate_limited": "Škoda Connect API rate limit reached. Please wait a while before trying again."
     },
     "abort": {
       "already_configured": "This account is already configured.",
@@ -52,7 +53,9 @@
       "mileage": { "name": "Mileage" },
       "outside_temperature": { "name": "Outside temperature" },
       "target_temperature": { "name": "Target temperature" },
-      "software_version": { "name": "Software version" }
+      "software_version": { "name": "Software version" },
+      "location_address": { "name": "Address" },
+      "charging_location_profile": { "name": "Charging location" }
     },
     "binary_sensor": {
       "doors_open": { "name": "Doors" },
@@ -61,7 +64,8 @@
       "bonnet_open": { "name": "Bonnet" },
       "lights_on": { "name": "Lights" },
       "charging": { "name": "Charging" },
-      "plugged_in": { "name": "Charging cable" }
+      "plugged_in": { "name": "Charging cable" },
+      "vehicle_in_saved_location": { "name": "At saved charging location" }
     },
     "lock": {
       "vehicle_lock": { "name": "Vehicle" }

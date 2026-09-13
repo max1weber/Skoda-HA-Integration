@@ -20,10 +20,10 @@ opnieuw-aanmelden, en een diagnostics-download.
 
 | Platform | Entiteiten |
 |---|---|
-| `sensor` | Batterijniveau, laadvermogen, laadsnelheid, resterende laadtijd, actieradius (batterij/totaal), brandstofniveau, AdBlue-bereik, kilometerstand, buiten-/doeltemperatuur, softwareversie |
-| `binary_sensor` | Portieren, ramen, kofferbak, motorkap, verlichting, aan het laden, laadkabel aangesloten |
+| `sensor` | Batterijniveau, laadvermogen, laadsnelheid, resterende laadtijd, actieradius (batterij/totaal), brandstofniveau, AdBlue-bereik, kilometerstand, buiten-/doeltemperatuur, softwareversie, adres van de laatst bekende locatie, naam van het momenteel actieve laadlocatieprofiel |
+| `binary_sensor` | Portieren, ramen, kofferbak, motorkap, verlichting, aan het laden, laadkabel aangesloten, voertuig bij opgeslagen laadlocatie |
 | `lock` | Centrale vergrendeling (vereist S-PIN) |
-| `device_tracker` | Laatst bekende GPS-locatie van het voertuig |
+| `device_tracker` | Laatst bekende GPS-locatie van het voertuig (zichtbaar op de Kaart-dashboardkaart) |
 | `climate` | Airconditioning op afstand (aan/uit, ventilatie, doeltemperatuur) |
 | `switch` | Ruitverwarming, laden, batterijbeschermingsmodus, verminderde laadstroom |
 | `button` | Claxon en knipperlichten, lichten laten knipperen, voertuig wekken |
@@ -82,7 +82,7 @@ Ook deze documentatie is beschikbaar in het [Engels](README.md) en het
 4. Home Assistant controleert de inloggegevens en maakt bij succes één apparaat aan per
    voertuig op het account, met alle van toepassing zijnde entiteiten.
 5. Open na het instellen het **Configureren**-dialoogvenster van de integratie om het
-   vernieuwingsinterval aan te passen (1–1440 minuten, standaard 30) of de alleen-lezen modus
+   vernieuwingsinterval aan te passen (15–1440 minuten, standaard 15) of de alleen-lezen modus
    in te schakelen.
 
 Als je sessie verloopt, toont Home Assistant een melding om "opnieuw aan te melden" — klik
@@ -96,6 +96,33 @@ PyPI-pakket, in plaats van zelf een OAuth2/REST/MQTT-client voor Škoda te bouwe
 de integratie van updates en dekking van de steeds veranderende voertuigmogelijkheden van de
 publieke API. Data wordt alleen ververst via polling — MQTT-pushmeldingen van de API worden
 niet gebruikt, wat de integratie eenvoudig houdt en een extra faalpunt vermijdt.
+
+### Rate limits
+
+De publieke MySkoda API hanteert een quotum per account en geeft HTTP 429 (Too Many Requests)
+terug zodra dat wordt overschreden — de `myskoda`-client zelf doet daar geen retry of backoff
+op. Uit meldingen van de community (zie
+[skodaconnect/homeassistant-myskoda#1053](https://github.com/skodaconnect/homeassistant-myskoda/issues/1053))
+blijkt dat te agressief pollen kan leiden tot een tijdelijke rate limit, of in het ergste geval
+een geblokkeerd account — vooral omdat het ophalen van de volledige status van één voertuig al
+gauw 10–13 losse API-requests kost (één per ondersteunde capability, plus voertuiginfo en
+onderhoudsgegevens).
+
+Om ruim binnen het quotum te blijven, doet deze integratie het volgende:
+
+- Standaard een vernieuwingsinterval van 15 minuten, wat ook het afgedwongen minimum is in de
+  opties-flow — je kunt dus niet per ongeluk een nog korter, risicovoller interval instellen.
+  Heb je meerdere voertuigen op één account, overweeg dan om dit te verhogen.
+- HTTP 429/430-responses worden expliciet herkend, waarna het pollen wordt gepauzeerd. De
+  `Retry-After`-header van de API wordt gerespecteerd indien aanwezig (met een terugval naar
+  15 minuten, met een maximum van 1 uur, als deze ontbreekt of niet te lezen is), in plaats van
+  meteen bij de volgende cyclus opnieuw te proberen.
+- Er wordt een duidelijke waarschuwing gelogd wanneer dit gebeurt, zichtbaar onder
+  **Instellingen → Systeem → Logboeken**, zodat het niet stilletjes te snel opnieuw probeert.
+
+## Changelog
+
+Zie [CHANGELOG.nl.md](CHANGELOG.nl.md) voor de release notes.
 
 ## Disclaimer
 
