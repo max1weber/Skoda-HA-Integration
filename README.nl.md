@@ -120,6 +120,10 @@ Om ruim binnen het quotum te blijven, doet deze integratie het volgende:
 - Er wordt een duidelijke waarschuwing gelogd wanneer dit gebeurt, zichtbaar onder
   **Instellingen → Systeem → Logboeken**, zodat het niet stilletjes te snel opnieuw probeert.
 
+## Changelog
+
+Zie [CHANGELOG.md](CHANGELOG.md) voor de release notes.
+
 ## Disclaimer
 
 Aangeboden zoals het is, zonder garantie. Škoda Auto kan zijn API op elk moment wijzigen,

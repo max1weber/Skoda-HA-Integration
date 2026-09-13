@@ -111,6 +111,10 @@ To stay well within the quota, this integration:
 - Logs a clear warning when this happens, so you can see it in **Settings → System → Logs**
   rather than the integration silently retrying too soon.
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
+
 ## Disclaimer
 
 Provided as-is, without warranty. Škoda Auto may change its API at any time, which can break
