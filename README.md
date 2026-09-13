@@ -18,7 +18,7 @@ an options flow, reauthentication support, and a diagnostics download.
 
 | Platform | Entities |
 |---|---|
-| `sensor` | Battery level, charging power, charging rate, remaining charging time, battery/total range, fuel level, AdBlue range, mileage, outside/target temperature, software version, address of the vehicle's last known location |
+| `sensor` | Battery level, charging power, charging rate, remaining charging time, battery/total range, fuel level, AdBlue range, mileage, outside/target temperature, software version, address of the vehicle's last known location, name of the charging location profile currently active |
 | `binary_sensor` | Doors, windows, trunk, bonnet, lights, charging, charging cable plugged in, vehicle at saved charging location |
 | `lock` | Central locking (requires S-PIN) |
 | `device_tracker` | Last known vehicle GPS position (shows on the Map dashboard) |

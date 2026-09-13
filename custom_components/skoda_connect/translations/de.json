@@ -54,7 +54,8 @@
       "outside_temperature": { "name": "Außentemperatur" },
       "target_temperature": { "name": "Zieltemperatur" },
       "software_version": { "name": "Softwareversion" },
-      "location_address": { "name": "Adresse" }
+      "location_address": { "name": "Adresse" },
+      "charging_location_profile": { "name": "Ladestandort" }
     },
     "binary_sensor": {
       "doors_open": { "name": "Türen" },

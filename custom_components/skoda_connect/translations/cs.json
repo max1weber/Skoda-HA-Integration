@@ -54,7 +54,8 @@
       "outside_temperature": { "name": "Venkovní teplota" },
       "target_temperature": { "name": "Cílová teplota" },
       "software_version": { "name": "Verze softwaru" },
-      "location_address": { "name": "Adresa" }
+      "location_address": { "name": "Adresa" },
+      "charging_location_profile": { "name": "Místo nabíjení" }
     },
     "binary_sensor": {
       "doors_open": { "name": "Dveře" },

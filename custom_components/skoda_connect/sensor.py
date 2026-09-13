@@ -104,6 +104,11 @@ def _location_address(vehicle: Vehicle) -> StateType:
         return None
 
 
+def _charging_location_profile(vehicle: Vehicle) -> StateType:
+    """Return the name of the charging profile bound to the vehicle's current location."""
+    return vehicle.charging_profiles.current_vehicle_position_profile.name
+
+
 SENSOR_DESCRIPTIONS: tuple[SkodaSensorEntityDescription, ...] = (
     SkodaSensorEntityDescription(
         key="battery_level",
@@ -219,6 +224,14 @@ SENSOR_DESCRIPTIONS: tuple[SkodaSensorEntityDescription, ...] = (
         icon="mdi:map-marker",
         value_fn=_location_address,
         exists_fn=lambda v: _location_address(v) is not None,
+    ),
+    SkodaSensorEntityDescription(
+        key="charging_location_profile",
+        translation_key="charging_location_profile",
+        icon="mdi:map-marker-radius",
+        value_fn=_charging_location_profile,
+        exists_fn=lambda v: v.charging_profiles is not None
+        and v.charging_profiles.current_vehicle_position_profile is not None,
     ),
 )
 

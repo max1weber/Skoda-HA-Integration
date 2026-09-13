@@ -54,7 +54,8 @@
       "outside_temperature": { "name": "Buitentemperatuur" },
       "target_temperature": { "name": "Doeltemperatuur" },
       "software_version": { "name": "Softwareversie" },
-      "location_address": { "name": "Adres" }
+      "location_address": { "name": "Adres" },
+      "charging_location_profile": { "name": "Laadlocatie" }
     },
     "binary_sensor": {
       "doors_open": { "name": "Portieren" },
